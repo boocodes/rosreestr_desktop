@@ -1,0 +1,9 @@
+﻿  initialization.cpp
+C:\Users\nick\source\repos\rosreestr\rosreestr\cmd_methods\initialization.cpp(8,1): warning C4005: UNICODE: изменение макроопределения
+C:\Users\nick\source\repos\rosreestr\rosreestr\cmd_methods\initialization.cpp(8,1): message : "UNICODE" ранее объявлен в командной строке
+  rosreestr.cpp
+C:\Users\nick\source\repos\rosreestr\rosreestr\rosreestr.cpp(5,10): warning C4067: непредвиденные лексемы за директивой препроцессора, требуется newline
+C:\Users\nick\source\repos\rosreestr\rosreestr\cmd_methods\initialization.cpp(8,1): warning C4005: UNICODE: изменение макроопределения
+C:\Users\nick\source\repos\rosreestr\rosreestr\cmd_methods\initialization.cpp(8,1): message : "UNICODE" ранее объявлен в командной строке
+  Создание кода...
+  rosreestr.vcxproj -> C:\Users\nick\source\repos\rosreestr\x64\Debug\cfm.exe
