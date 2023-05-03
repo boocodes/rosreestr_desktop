@@ -21,11 +21,25 @@ public:
 		std::cout << cfm_directory_init + "\n";
 
 		fs::create_directory(cfm_directory_init);
-
+		create_description_workspace_file(cfm_directory_init);
 		return true;
 	}
 	
 
 private:
+
+	bool create_description_workspace_file(std:: string path) {
+		std::ofstream oFile(path + "/" + "description.txt");
+		std::ofstream fileIn;
+		fileIn.open(path + "/" + "description.txt");
+		if (fileIn.is_open()) {
+			fileIn << "Безымянное рабочее пространство, измените данный файл, чтобы дать название рабочему пространству.";
+			fileIn.close();
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
 
 };
