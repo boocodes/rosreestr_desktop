@@ -6,7 +6,7 @@ using namespace std;
 
 int main(int argc, char* argv[]){
 	
-	std::string exec_command = "php ./php.php";
+	std::string exec_command = "php ./main.php";
 	for(int i = 1; i<argc; i++){
 		exec_command += " ";
        	exec_command += argv[i]; 

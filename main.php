@@ -1,4 +1,8 @@
 <?php
+    include_once "./classes/initialization.php";
+    include_once "./classes/connection.php";
+
+//    error_reporting(0); switch it at the publish version
     if($argc <= 1){
         echo "Далее представлены полезные команды для работы с контейнерным пакетным менеджером \n";
         echo "Отдел инициализации:\n";
@@ -10,14 +14,44 @@
         echo "    branch    Используется для создания ветки. Список аргументов --{branch_name} (Список ветки для создания)\n";
         echo "    checkout  Используется для переключения веток. Список аргументов --{branch_name} (Название ветки для переключения)\n";
         echo "Отдел синхронизации:\n";
+        echo "    connect   Используется для подключения к удаленному серверу. Принимает строго следующие аргументы: --{имя пользователя} --{пароль}\n";
         echo "    pull      Используется для принятия всех изменений в текущей ветке с удаленного сервера\n";
         return;
     }
     if($argv[1] == "init"){
-        mkdir("./.cfm");
-        $description_file_text = "Это текст описания вашего контейнера, отредактируйте этот файл, чтобы дать пользовательское описание";
-        $fp = fopen("./.cfm/description.txt", "w");
-        fwrite($fp, $description_file_text);
-        fclose($fp);
+        $init = new Initiliazation();
+        if($init->init()){
+            echo "\nКонтейнер успешно инициализирован\n";
+        }
+        else{
+            echo "\nВ данной директории уже имеется инициализированный контейнер\n";
+        }
+    }
+    if($argv[1] == "connect"){
+        // check servers alive`s
+        $connect = new Connection();
+        $result = json_decode($connect->get_contain_connection(), true);
+        // not a alive
+        if(!$result == "Сервер в рабочем состояни"){
+            echo $result . "\n";
+            return;
+        }
+        // alive
+        echo $result;
+        if($argc <= 2){
+            echo "\nОшибка! Введите корректные имя пользователя, пароль\n";
+            return 1;
+        }
+
+
+        $result = $connect->authinicate_user_data($argv[2], $argv[3]);
+        if($result){
+            echo "\nУспешная авторизация\n";
+        }
+        else{
+            echo "\nАвторизация пройдена ошибочно\n";
+        }
+
+
     }
 ?>
